@@ -1,0 +1,15 @@
+{
+  "name": "opentelemetry-tempo",
+  "version": "1.0.0",
+  "description": "OpenTelemetry Tempo",
+  "main": "yaml.js",
+  "scripts": {
+    "yaml": "node yaml.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

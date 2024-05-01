@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - kennels
+  collector:
+    image: otel/opentelemetry-collector:0.97.0
+    command: '--config /etc/otel-config.yaml'
+    volumes:
+      - ./otel-config.yaml:/etc/otel-config.yaml
+    ports:
+      - 6831:6831
+  dogs:
+    build: ./services/dogs
+  inventory:
+    build: ./services/inventory
+  kennels:
+    build: ./services/kennels

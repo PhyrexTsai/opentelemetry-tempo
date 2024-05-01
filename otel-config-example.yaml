@@ -1,0 +1,23 @@
+receivers:
+  jaeger:
+    protocols:
+      thrift_compact:
+      thrift_http:
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    loglevel: debug
+  otlp:
+    endpoint: ${GRAFANA_CLOUD_TEMPO_URL}
+    headers:
+      authorization: Basic ${GRAFANA_CLOUD_TEMPO_DIGEST}
+
+service:
+  pipelines:
+    traces:
+      receivers: [jaeger]
+      processors: [batch]
+      exporters: [otlp]
